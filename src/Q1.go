@@ -5,7 +5,7 @@
 
 package main
 
-//Importing http
+//Imports with http
 import (
   "net/http"
   "fmt"
@@ -13,12 +13,14 @@ import (
 
 func main() {
   http.HandleFunc("/", guess)
-  //Curl to run port 8080 
+  // Curl to run port 8080 
   http.ListenAndServe(":8080", nil)
 }
 
 func guess(w http.ResponseWriter, r *http.Request) {
+  //Setting server name 
   w.Header().Set("Server", "Guessing game")
   w.WriteHeader(200)
-  fmt.Fprint(w, "<h1>Guessing Game</h1>")
+  // Responds with text guessing game 
+  fmt.Fprint(w, "Guessing Game")
 }
