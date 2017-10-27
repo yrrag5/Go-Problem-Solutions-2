@@ -31,16 +31,16 @@ func guessHandler(w http.ResponseWriter, r *http.Request) {
 
 	if _, err := r.Cookie("target"); err != nil {
 		// Generating random number between 1 and 20 
-		var randNum = ((rand.Int() % 19) + 1)
+		var generateNum = ((rand.Int() % 19) + 1)
 
 		n, _ := strconv.Atoi(g)
 
 		// Checking if guess matches the number selected 
-		if n == randNum{
+		if n == generateNum{
 			g = "Congratulations!"
 		}// Inner if 
 
-		num := strconv.Itoa(randNum)
+		num := strconv.Itoa(generateNum)
 
 		// Declaring cookie and setting the name as target
 		cookie := http.Cookie{
