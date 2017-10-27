@@ -6,7 +6,7 @@
 package main
 
 import (
-	"html/template"
+	"text/template"
 	"math/rand"
 	"net/http"
 	"strconv"
