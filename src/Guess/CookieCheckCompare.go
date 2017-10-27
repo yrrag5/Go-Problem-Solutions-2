@@ -23,7 +23,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 // Checking for a cookie and comparing it with guess 
-func guessGameHandler(w http.ResponseWriter, r *http.Request) {
+func guessHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm();
 	g := r.FormValue("guess")
 
@@ -33,10 +33,10 @@ func guessGameHandler(w http.ResponseWriter, r *http.Request) {
 		// Generating random number between 1 and 20 
 		var randNum = ((rand.Int() % 19) + 1)
 
-		i, _ := strconv.Atoi(g)
+		n, _ := strconv.Atoi(g)
 
 		// Checking if guess matches the number selected 
-		if i == randNum{
+		if n == randNum{
 			g = "Congratulations!"
 		}// Inner if 
 
@@ -57,6 +57,6 @@ func guessGameHandler(w http.ResponseWriter, r *http.Request) {
 }// Func
 
 func main() {
-	 http.HandleFunc("/", guessGameHandler)
+	 http.HandleFunc("/guess", guessHandler)
 	 http.ListenAndServe(":8080", nil)
 }
