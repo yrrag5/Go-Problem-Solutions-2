@@ -19,7 +19,7 @@ type text struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "guess.html")
+	http.ServeFile(w, r, "Guess/guess.html")
 }
 
 // Checking for a cookie and comparing it with guess 
@@ -37,7 +37,7 @@ func guessGameHandler(w http.ResponseWriter, r *http.Request) {
 
 		// Checking if guess matches the number selected 
 		if i == randNum{
-			g = "Correct!"
+			g = "Congratulations!"
 		}// Inner if 
 
 		num := strconv.Itoa(randNum)
@@ -52,12 +52,11 @@ func guessGameHandler(w http.ResponseWriter, r *http.Request) {
 	}// if
 
 	m := text{message: "Guess a number between 1 and 20: ", guess: g}
-	t, _ := template.ParseFiles("guess.tmpl")
+	t, _ := template.ParseFiles("Guess/guess.tmpl")
 	t.Execute(w, m)
 }// Func
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
-	http.HandleFunc("/guess", guessGameHandler)
-	http.ListenAndServe(":8080", nil)
+	 http.HandleFunc("/", guessGameHandler)
+	 http.ListenAndServe(":8080", nil)
 }
